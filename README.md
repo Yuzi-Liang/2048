@@ -49,7 +49,7 @@ Required libraries: swing, KeyAdapter, KeyEvent, 2DArray
 
 
 
-
+<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png" width="350" />
 
 
 
