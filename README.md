@@ -3,8 +3,6 @@ Application Requirements Specification  <br> for <br> Term Project
 </h2> 
 
 
-
-
 <center>Prepared By: <br> Jiafan Lin, Yuzi Liang </center>
 
 
@@ -48,7 +46,9 @@ Required libraries: swing, KeyAdapter, KeyEvent, 2DArray
 
 ### **Logic Specification**
 
-<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png" width="350" />
+<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png">
+
+
 
 
 
