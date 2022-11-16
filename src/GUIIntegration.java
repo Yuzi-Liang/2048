@@ -16,7 +16,8 @@ public class GUIIntegration extends JFrame implements{
 
     }
 
-    public JPanel createGamePlayPanel(){
+    public void switchToGamePlayPanel(){
+        this.remove();
         JPanel panel = new JPanel();
         panel.setLayout(null);
         JTextField[][] init = new JTextField[size][size];
