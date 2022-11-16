@@ -3,8 +3,6 @@ Application Requirements Specification  <br> for <br> Term Project
 </h2> 
 
 
-
-
 <center>Prepared By: <br> Jiafan Lin, Yuzi Liang </center>
 
 
@@ -39,7 +37,7 @@ Sam is a big fan of *2048.* This weekend he is free and has a lot of spare time.
 2. Evaluate if there is any block can be combined
 3. Evaluate if one game is ended
 4. Scroll the game board in 4 directions
-5. Store records of scores from past players and their names
+5. Store records of scores from past players and their names locally
 6. Deploy on local machine and web
 
 Required libraries: swing, KeyAdapter, KeyEvent, 2DArray
@@ -48,7 +46,9 @@ Required libraries: swing, KeyAdapter, KeyEvent, 2DArray
 
 ### **Logic Specification**
 
-<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png" width="350" />
+<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png">
+
+
 
 
 
