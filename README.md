@@ -46,9 +46,25 @@ Required libraries: swing, KeyAdapter, KeyEvent, 2DArray
 
 ### **Logic Specification**
 
-<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/figure_1.png">
+<img src="https://github.com/Yuzi-Liang/INFO5100TermProject/blob/main/image/template.png">
 
+$\bullet$ start game: A start menu with new game, load game and exit options
 
+$\bullet$ load game: Load last game play
+
+$\bullet$ save game: Save current game play in a text document with certain format
+
+$\bullet$ generate game board: Initialize a game board with customized size, the game board will be a square grid.
+
+$\bullet$ generate random block: Generate a number block with value either "2" or "4"
+
+$\bullet$ evaluate if the game ends: If all squares in the grid (game board) are occupied with 
+
+$\bullet$ scroll in any of the 4 directions: Use arrow keys to combine same number blocks and save more space on the game board
+
+$\bullet$ save score and player name locally: Score of each game will be the sum of all number blocks on the game board when the game ends, the result will be saved in a text document including username and total score.
+
+$\bullet$ exit: Exit current game and redirect to main menu
 
 
 
