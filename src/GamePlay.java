@@ -107,7 +107,7 @@ public class GamePlay {
 		for(int i = 0; i < size; i++) {
 			currentCol = gameboard[i];
 			boolean firstZero = true;
-			int firstZeroLoc;
+			int firstZeroLoc = 0;
 			for(int j = 0; j < size; j++) {
 				if(currentCol[j] == 0 & firstZero == true) {
 					firstZero = false;
