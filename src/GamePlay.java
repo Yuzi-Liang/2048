@@ -1,5 +1,6 @@
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class GamePlay {
     int[][] gameboard;
@@ -10,13 +11,8 @@ public class GamePlay {
     public GamePlay(int size){
     	this.size = size;
         gameboard = new int[size][size];
-//        for(int i = 0; i < size; i++) {
-//        	for(int j = 0; j < size; j++) {
-//        		gameboard[i][j] = 2;
-//        	}
-//        }
     }
-    
+
     public void gRB() {
     	emptyboard = new ArrayList<>();
     	for(int i = 0; i < size; i++) {
@@ -38,8 +34,76 @@ public class GamePlay {
     public void resetGame() {
     	
     }
-    
-    
+
+	public boolean isEnd(){
+		if(!isFull()){
+			return false;
+		}else{
+			Stack<Integer> myStack = new Stack<>();
+			for(int i = 0; i < size; i++){
+				myStack.clear();
+				int currentIdx = 0;
+				myStack.push(gameboard[i][currentIdx]);
+				while(currentIdx+1 < size){
+					int currVal = myStack.peek();
+					if(currVal == gameboard[i][currentIdx+1]){
+						return false;
+					}else{
+						myStack.pop();
+						currentIdx = currentIdx + 1;
+						myStack.push(gameboard[i][currentIdx]);
+					}
+				}
+
+			}
+
+			for(int i = 0; i < size; i++){
+				myStack.clear();
+				int currentIdx = 0;
+				myStack.push(gameboard[currentIdx][i]);
+				while(currentIdx+1 < size){
+					int currVal = myStack.peek();
+					if(currVal == gameboard[currentIdx+1][i]){
+						return false;
+					}else{
+						myStack.pop();
+						currentIdx = currentIdx + 1;
+						myStack.push(gameboard[currentIdx][i]);
+					}
+				}
+
+			}
+
+			return true;
+		}
+
+	}
+
+
+
+
+	public boolean isFull(){
+		for(int i = 0; i < size; i++){
+			for(int j = 0; j < size; j++){
+				if(gameboard[i][j] == 0){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+    public void goUp(){
+		int currentRow = 0;
+		int currentCol = 0;
+		while(currentRow < gameboard.length-1){
+			boolean nextRow = true;
+			for(int i = 0; i < currentCol; i++){
+				if(gameboard[currentRow][currentCol] == gameboard[currentRow+1][currentCol]){
+					
+				}
+			}
+		}
+	}
     
 
 }
