@@ -103,7 +103,6 @@ public class GamePlay {
 //				}
 //			}
 //		}
-    	ArrayList<int[]> Col = new ArrayList<>();
     	int[] currentCol;
 		for(int i = 0; i < size; i++) {
 			currentCol = gameboard[i];
@@ -120,12 +119,8 @@ public class GamePlay {
 					currentCol[j] = 0;
 				}
 			}
-			Col.add(currentCol);
+			gameboard[i] = currentCol;
 		}
-    	for(int i = 0; i < size; i++) {
-    		gameboard[i] = Col.get(i);
-    	}    	
-    	
     	this.gRB();
 	}
     
