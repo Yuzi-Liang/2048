@@ -93,16 +93,40 @@ public class GamePlay {
 		return true;
 	}
     public void goUp(){
-		int currentRow = 0;
-		int currentCol = 0;
-		while(currentRow < gameboard.length-1){
-			boolean nextRow = true;
-			for(int i = 0; i < currentCol; i++){
-				if(gameboard[currentRow][currentCol] == gameboard[currentRow+1][currentCol]){
-					
+//		int currentRow = 0;
+//		int currentCol = 0;
+//		while(currentRow < gameboard.length-1){
+//			boolean nextRow = true;
+//			for(int i = 0; i < currentCol; i++){
+//				if(gameboard[currentRow][currentCol] == gameboard[currentRow+1][currentCol]){
+//					
+//				}
+//			}
+//		}
+    	ArrayList<int[]> Col = new ArrayList<>();
+    	int[] currentCol;
+		for(int i = 0; i < size; i++) {
+			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc;
+			for(int j = 0; j < size; j++) {
+				if(currentCol[j] == 0 & firstZero == true) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentCol[j] != 0 & firstZero == false){
+					firstZeroLoc = firstZeroLoc + 1;
+					currentCol[firstZeroLoc] = currentCol[j];
+					currentCol[j] = 0;
 				}
 			}
+			Col.add(currentCol);
 		}
+    	for(int i = 0; i < size; i++) {
+    		gameboard[i] = Col.get(i);
+    	}    	
+    	
+    	this.gRB();
 	}
     
 
