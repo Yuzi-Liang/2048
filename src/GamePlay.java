@@ -39,42 +39,43 @@ public class GamePlay {
 		if(!isFull()){
 			return false;
 		}else{
-			Stack<Integer> myStack = new Stack<>();
-			for(int i = 0; i < size; i++){
-				myStack.clear();
-				int currentIdx = 0;
-				myStack.push(gameboard[i][currentIdx]);
-				while(currentIdx+1 < size){
-					int currVal = myStack.peek();
-					if(currVal == gameboard[i][currentIdx+1]){
-						return false;
-					}else{
-						myStack.pop();
-						currentIdx = currentIdx + 1;
-						myStack.push(gameboard[i][currentIdx]);
-					}
-				}
-
-			}
-
-			for(int i = 0; i < size; i++){
-				myStack.clear();
-				int currentIdx = 0;
-				myStack.push(gameboard[currentIdx][i]);
-				while(currentIdx+1 < size){
-					int currVal = myStack.peek();
-					if(currVal == gameboard[currentIdx+1][i]){
-						return false;
-					}else{
-						myStack.pop();
-						currentIdx = currentIdx + 1;
-						myStack.push(gameboard[currentIdx][i]);
-					}
-				}
-
-			}
-
-			return true;
+//			Stack<Integer> myStack = new Stack<>();
+//			for(int i = 0; i < size; i++){
+//				myStack.clear();
+//				int currentIdx = 0;
+//				myStack.push(gameboard[i][currentIdx]);
+//				while(currentIdx+1 < size){
+//					int currVal = myStack.peek();
+//					if(currVal == gameboard[i][currentIdx+1]){
+//						return false;
+//					}else{
+//						myStack.pop();
+//						currentIdx = currentIdx + 1;
+//						myStack.push(gameboard[i][currentIdx]);
+//					}
+//				}
+//
+//			}
+//
+//			for(int i = 0; i < size; i++){
+//				myStack.clear();
+//				int currentIdx = 0;
+//				myStack.push(gameboard[currentIdx][i]);
+//				while(currentIdx+1 < size){
+//					int currVal = myStack.peek();
+//					if(currVal == gameboard[currentIdx+1][i]){
+//						return false;
+//					}else{
+//						myStack.pop();
+//						currentIdx = currentIdx + 1;
+//						myStack.push(gameboard[currentIdx][i]);
+//					}
+//				}
+//
+//			}
+//
+//			return true;
+			return !(this.goDown() | this.goUp() | this.goLeft() | this.goLeft());
 		}
 
 	}
@@ -92,6 +93,8 @@ public class GamePlay {
 		}
 		return true;
 	}
+	
+	
     public boolean goUp(){
     	boolean canMove = false;
     	int[] currentCol = new int[size];
