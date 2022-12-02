@@ -3,34 +3,29 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GUIIntegration extends JPanel implements KeyListener {
+public class GamePlayPanel extends JPanel implements KeyListener {
     GamePlay gp;
     int size;
     double blockSideLength;
     double blockDistance;
     final double xoffset = 200;
     final double yoffset = 10;
-    public GUIIntegration(GamePlay gp){
+
+    public GamePlayPanel(GamePlay gp){
         this.gp = gp;
         this.size = gp.gameboard.length;
         blockSideLength = 500/this.size;
         blockDistance = blockSideLength + 10;
-        this.addKeyListener(this);
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-        this.setSize(1000, 600);
-        this.setVisible(true);
     }
 
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
                 if(gp.gameboard[i][j] != 0){
                     g.drawString(String.valueOf(gp.gameboard[i][j]), (int)(xoffset+j*blockDistance) + (int)blockSideLength/2, (int)(yoffset+i*blockDistance) + (int)blockSideLength/2);
-                    g.drawRect((int)(xoffset+j*blockDistance), (int)(yoffset+i*blockDistance), (int)blockSideLength, (int)blockSideLength);
-                }else{
                     g.drawRect((int)(xoffset+j*blockDistance), (int)(yoffset+i*blockDistance), (int)blockSideLength, (int)blockSideLength);
                 }
             }
@@ -38,12 +33,7 @@ public class GUIIntegration extends JPanel implements KeyListener {
 
         g.dispose();
     }
-    public void setVisionTrue(){
-        this.setVisible(true);
-    }
-    public void setVisionFalse(){
-        this.setVisible(false);
-    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
