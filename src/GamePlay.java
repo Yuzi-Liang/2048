@@ -24,7 +24,7 @@ public class GamePlay {
     		}
     	}
     	int ranNum = (int)(Math.random()*emptyboard.size());
-    	System.out.println(ranNum);
+//    	System.out.println(ranNum);
     	int[] currPos = emptyboard.get(ranNum);
     	
     	int val = Math.random() >= 0.9 ? 4 : 2;
@@ -92,37 +92,339 @@ public class GamePlay {
 		}
 		return true;
 	}
-    public void goUp(){
-//		int currentRow = 0;
-//		int currentCol = 0;
-//		while(currentRow < gameboard.length-1){
-//			boolean nextRow = true;
-//			for(int i = 0; i < currentCol; i++){
-//				if(gameboard[currentRow][currentCol] == gameboard[currentRow+1][currentCol]){
-//					
-//				}
-//			}
-//		}
-    	int[] currentCol;
+    public boolean goUp(){
+    	boolean canMove = false;
+    	int[] currentCol = new int[size];
 		for(int i = 0; i < size; i++) {
-			currentCol = gameboard[i];
+			for(int k = 0; k < size; k++) {
+				currentCol[k] = gameboard[k][i];
+			}
+//			currentCol = gameboard[i];
 			boolean firstZero = true;
 			int firstZeroLoc = 0;
 			for(int j = 0; j < size; j++) {
-				if(currentCol[j] == 0 & firstZero == true) {
+				if(currentCol[j] == 0 & firstZero) {
 					firstZero = false;
 					firstZeroLoc = j;
 				}
-				else if(currentCol[j] != 0 & firstZero == false){
-					firstZeroLoc = firstZeroLoc + 1;
+				else if(currentCol[j] != 0 & !firstZero){
 					currentCol[firstZeroLoc] = currentCol[j];
 					currentCol[j] = 0;
+					firstZeroLoc = firstZeroLoc + 1;
+					canMove = true;
 				}
 			}
-			gameboard[i] = currentCol;
+			for(int k = 0; k < size; k++) {
+				gameboard[k][i] = currentCol[k];
+			}
+		}	
+
+		
+		for(int i = 0; i < size-1; i++) {
+			int[] currRow = gameboard[i];
+			int[] nextRow = gameboard[i+1];
+			for(int j = 0; j < size; j++) {
+				if(currRow[j] == nextRow[j] & currRow[j] != 0) {
+					currRow[j] = currRow[j]*2;
+					nextRow[j] = 0;
+					canMove = true;
+				}
+				
+				
+			}
+			
 		}
-    	this.gRB();
+		
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentCol[k] = gameboard[k][i];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = 0; j < size; j++) {
+				if(currentCol[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentCol[j] != 0 & !firstZero){
+					currentCol[firstZeroLoc] = currentCol[j];
+					currentCol[j] = 0;
+					firstZeroLoc = firstZeroLoc + 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[k][i] = currentCol[k];
+			}
+		}	
+		
+		
+		if(canMove) {
+			this.gRB();
+		}
+		
+		return canMove;
+    	
 	}
     
+    public boolean goDown(){
+    	boolean canMove = false;
+    	int[] currentCol = new int[size];
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentCol[k] = gameboard[k][i];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = size - 1; j >= 0; j--) {
+				if(currentCol[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentCol[j] != 0 & !firstZero){
+					currentCol[firstZeroLoc] = currentCol[j];
+					currentCol[j] = 0;
+					firstZeroLoc = firstZeroLoc - 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[k][i] = currentCol[k];
+			}
+		}	
+
+		
+		for(int i = size - 1; i > 0; i--) {
+			
+			int[] currRow = gameboard[i];
+			int[] nextRow = gameboard[i-1];
+			for(int j = 0; j < size; j++) {
+				if(currRow[j] == nextRow[j] & currRow[j] != 0) {
+					currRow[j] = currRow[j]*2;
+					nextRow[j] = 0;
+					canMove = true;
+				}
+				
+				
+			}
+			
+		}
+		
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentCol[k] = gameboard[k][i];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = size - 1; j >= 0; j--) {
+				if(currentCol[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentCol[j] != 0 & !firstZero){
+					currentCol[firstZeroLoc] = currentCol[j];
+					currentCol[j] = 0;
+					firstZeroLoc = firstZeroLoc - 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[k][i] = currentCol[k];
+			}
+		}	
+		
+		
+		if(canMove) {
+			this.gRB();
+		}
+		
+		return canMove;
+    	
+	}
+    
+    public boolean goLeft(){
+    	boolean canMove = false;
+    	int[] currentRow = new int[size];
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentRow[k] = gameboard[i][k];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = 0; j < size; j++) {
+				if(currentRow[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentRow[j] != 0 & !firstZero){
+					currentRow[firstZeroLoc] = currentRow[j];
+					currentRow[j] = 0;
+					firstZeroLoc = firstZeroLoc + 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[i][k] = currentRow[k];
+			}
+		}	
+
+		
+		for(int i = 0; i < size-1; i++) {
+			int[] currRow =new int[size];
+			int[] nextRow = new int[size];
+			for(int j = 0; j < size; j++) {
+				currRow[j] = gameboard[j][i];
+				nextRow[j] = gameboard[j][i+1];
+			}
+			
+			for(int j = 0; j < size; j++) {
+				if(currRow[j] == nextRow[j] & currRow[j] != 0) {
+					currRow[j] = currRow[j]*2;
+					nextRow[j] = 0;
+					canMove = true;
+				}
+				
+				
+			}
+			
+			for(int j = 0; j < size; j++) {
+				 gameboard[j][i] = currRow[j];
+				 gameboard[j][i+1] = nextRow[j];
+			}
+			
+			
+			
+			
+
+			
+		}
+		
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentRow[k] = gameboard[i][k];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = 0; j < size; j++) {
+				if(currentRow[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentRow[j] != 0 & !firstZero){
+					currentRow[firstZeroLoc] = currentRow[j];
+					currentRow[j] = 0;
+					firstZeroLoc = firstZeroLoc + 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[i][k] = currentRow[k];
+			}
+		}	
+		
+		
+		if(canMove) {
+			this.gRB();
+		}
+		
+		return canMove;
+    	
+	}
+    
+    public boolean goRight(){
+    	boolean canMove = false;
+    	int[] currentRow = new int[size];
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentRow[k] = gameboard[i][k];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = size - 1; j >= 0; j--) {
+				if(currentRow[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentRow[j] != 0 & !firstZero){
+					currentRow[firstZeroLoc] = currentRow[j];
+					currentRow[j] = 0;
+					firstZeroLoc = firstZeroLoc - 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[i][k] = currentRow[k];
+			}
+		}	
+
+		
+		for(int i = size - 1; i > 0; i++) {
+			int[] currRow =new int[size];
+			int[] nextRow = new int[size];
+			for(int j = 0; j < size; j++) {
+				currRow[j] = gameboard[j][i];
+				nextRow[j] = gameboard[j][i-1];
+			}
+			
+			for(int j = 0; j < size; j++) {
+				if(currRow[j] == nextRow[j] & currRow[j] != 0) {
+					currRow[j] = currRow[j]*2;
+					nextRow[j] = 0;
+					canMove = true;
+				}
+				
+				
+			}
+			
+			for(int j = 0; j < size; j++) {
+				gameboard[j][i] = currRow[j];
+				gameboard[j][i-1] = nextRow[j];
+			}
+			
+			
+			
+			
+
+			
+		}
+		
+		for(int i = 0; i < size; i++) {
+			for(int k = 0; k < size; k++) {
+				currentRow[k] = gameboard[i][k];
+			}
+//			currentCol = gameboard[i];
+			boolean firstZero = true;
+			int firstZeroLoc = 0;
+			for(int j = size - 1; j >= 0; j--) {
+				if(currentRow[j] == 0 & firstZero) {
+					firstZero = false;
+					firstZeroLoc = j;
+				}
+				else if(currentRow[j] != 0 & !firstZero){
+					currentRow[firstZeroLoc] = currentRow[j];
+					currentRow[j] = 0;
+					firstZeroLoc = firstZeroLoc - 1;
+					canMove = true;
+				}
+			}
+			for(int k = 0; k < size; k++) {
+				gameboard[i][k] = currentRow[k];
+			}
+		}	
+		
+		
+		if(canMove) {
+			this.gRB();
+		}
+		
+		return canMove;
+    	
+	}
 
 }

@@ -18,6 +18,7 @@ public class GUIIntegration extends JFrame implements KeyListener{
 //        int size = gameboard.length;
 //        blockSideLength = 500/size;
 //        blockDistance = blockSideLength + 10;
+    		this.addKeyListener(this);
     	  GMenu(currentP);
     	  this.add(currentP);
     	  this.setSize(1000, 600);
@@ -51,7 +52,7 @@ public class GUIIntegration extends JFrame implements KeyListener{
 			}
     		
     	});
-    	
+    	mp.addKeyListener(this);
     	mp.add(button1);
     	mp.add(button2);
     	
@@ -85,7 +86,11 @@ public class GUIIntegration extends JFrame implements KeyListener{
 
             }
         }
+        
         mp.revalidate();
+        mp.addKeyListener(this);
+        mp.setFocusable(true);
+    	mp.requestFocusInWindow();
         mp.repaint();
 //        this.add(panel);
 //        this.remove(panel);
@@ -105,7 +110,13 @@ public class GUIIntegration extends JFrame implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("in");
+		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			gp.goUp();
+//			this.repaint();
+			System.out.println("up");
+		}
 	}
 
 
@@ -119,7 +130,18 @@ public class GUIIntegration extends JFrame implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println("in");
 		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			gp.goUp();
+			this.repaint();
+			System.out.println("up");
+		}
+		
+		
+		
+		
+		
 		
 	}
 
