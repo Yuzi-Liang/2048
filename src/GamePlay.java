@@ -9,11 +9,14 @@ public class GamePlay {
 
     public GamePlay(int size){
         this.size = size;
-        gameboard = new int[size][size];
+        this.gameboard = new int[size][size];
         this.gRB();
         this.gRB();
     }
-
+    public GamePlay(int[][] gameboard){
+        this.size = gameboard.length;
+        this.gameboard = gameboard;
+    }
     public void gRB() {
         emptyboard = new ArrayList<>();
         for(int i = 0; i < size; i++) {
@@ -36,23 +39,44 @@ public class GamePlay {
     }
 
     public boolean isEnd(){
-        return !(goUp() | goRight() | goLeft() | goDown());
+        if(!isFull()){
+            return false;
+        }else {
+            //row check
+            for(int i = 0; i < size; i++){
+                for(int j = 0; j < size-1; j++){
+                    if(this.gameboard[i][j] == this.gameboard[i][j+1]){
+                        return false;
+                    }
+                }
+            }
+
+            //col check
+            for(int col = 0; col < size; col++){
+                for(int row = 0; row < size-1; row++){
+                    if(this.gameboard[row][col] == this.gameboard[row+1][col]){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+//        return !(goUp() | goRight() | goLeft() | goDown());
 
     }
-
-
-
 
     public boolean isFull(){
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
-                if(gameboard[i][j] == 0){
+                if(this.gameboard[i][j] == 0){
                     return false;
                 }
             }
         }
         return true;
     }
+
     public boolean goUp(){
         boolean canMove = false;
         int[] currentCol = new int[size];

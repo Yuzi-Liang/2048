@@ -1,0 +1,11 @@
+
+hha: 20
+das: 88
+aa: 12
+as: 58
+null: 16
+33: 92
+asas: 270
+null: 16
+dudomaso: 110
+lala: 78
