@@ -22,8 +22,11 @@ public class StartMenuPanel extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String size = JOptionPane.showInputDialog("what size do you want?", null);
-                int size1 = Integer.parseInt(size);
+                int size1 = -1;
+                while(size1 > 10 || size1 < 2) {
+                    String size = JOptionPane.showInputDialog("what size do you want? (size between 2 and 10)", null);
+                    size1 = Integer.parseInt(size);
+                }
                 GamePlay gp = new GamePlay(size1);
                 GUIIntegration mygui = new GUIIntegration(gp, StartMenuPanel.this, StartMenuPanel.this.myf);
                 myf.add(mygui);

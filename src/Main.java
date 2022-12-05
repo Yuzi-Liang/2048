@@ -5,7 +5,7 @@ public class Main extends JFrame{
         JFrame myf = new JFrame();
         StartMenuPanel myp = new StartMenuPanel(myf);
         myf.add(myp);
-        myf.setSize(1000, 600);
+        myf.setSize(1000, 700);
         myf.setVisible(true);
 
     }

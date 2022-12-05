@@ -1,11 +1,7 @@
-
-hha: 20
-das: 88
-aa: 12
-as: 58
-null: 16
-33: 92
-asas: 270
-null: 16
-dudomaso: 110
-lala: 78
+start
+test1/ 16/ 2/ Mon Dec 05 13:33:31 PST 2022
+test2/ 48/ 3/ Mon Dec 05 13:57:30 PST 2022
+test3/ 314/ 4/ Mon Dec 05 13:57:58 PST 2022
+test4/ 18/ 2/ Mon Dec 05 13:58:07 PST 2022
+test5/ 70/ 3/ Mon Dec 05 13:58:24 PST 2022
+test6/ 12/ 2/ Mon Dec 05 13:58:49 PST 2022
