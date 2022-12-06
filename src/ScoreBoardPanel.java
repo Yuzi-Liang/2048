@@ -21,11 +21,8 @@ public class ScoreBoardPanel extends JPanel {
         this.smp = smp;
         this.myf = myf;
         this.setLayout(null);
-//        JScrollPane scrollPane = new JScrollPane(this);
-//        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         JButton jb = new JButton("exit");
-        jb.setBounds(50, 50, 100, 50);
+        jb.setBounds(25, 25, 70, 30);
         jb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,16 +60,14 @@ public class ScoreBoardPanel extends JPanel {
            index++;
        }
        this.data = data;
-       String[] choices = {"Score", "Size", "Date"};
+       String[] choices = {"Date", "Score", "Size"};
        JComboBox<String> jcb = new JComboBox<>(choices);
-       jcb.setBounds(800, 50, 100, 50);
+       jcb.setBounds(825, 25, 100, 50);
        jcb.addItemListener(new ItemListener() {
            @Override
            public void itemStateChanged(ItemEvent e) {
                if(e.getStateChange() == ItemEvent.SELECTED){
-//                   System.out.print(e.getItem());
                    if(e.getItem().toString().equals("Score")){
-                       System.out.println("in");
                        Arrays.sort(ScoreBoardPanel.this.data, Comparator.comparingInt(ele -> Integer.parseInt(ele[1])));
                        ScoreBoardPanel.this.setLayout(null);
                        ScoreBoardPanel.this.remove(ScoreBoardPanel.this.jt);
@@ -87,7 +82,6 @@ public class ScoreBoardPanel extends JPanel {
                        ScoreBoardPanel.this.setSize(1000,600);
                        ScoreBoardPanel.this.setVisible(true);
                    }else if(e.getItem().toString().equals("Size")){
-                       System.out.println("in");
                        Arrays.sort(ScoreBoardPanel.this.data, Comparator.comparingInt(ele -> Integer.parseInt(ele[2])));
                        ScoreBoardPanel.this.setLayout(null);
                        ScoreBoardPanel.this.remove(ScoreBoardPanel.this.jt);

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class GUIIntegration extends JPanel implements KeyListener {
@@ -14,10 +15,10 @@ public class GUIIntegration extends JPanel implements KeyListener {
     double blockSideLength;
     double blockDistance;
     final double xoffset = 200;
-    final double yoffset = 10;
+    final double yoffset = 30;
     StartMenuPanel smp;
     JFrame myf;
-    public GUIIntegration(GamePlay gp, StartMenuPanel smp, JFrame myf){
+    public GUIIntegration(GamePlay gp, StartMenuPanel smp, JFrame myf, boolean isNewGame, String filename){
         this.myf = myf;
         this.smp = smp;
         this.gp = gp;
@@ -27,7 +28,7 @@ public class GUIIntegration extends JPanel implements KeyListener {
         this.setLayout(null);
         JButton jb = new JButton("exit");
         jb.setLayout(null);
-        jb.setBounds(50,50, 100, 50);
+        jb.setBounds(25,25, 70, 30);
         jb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,26 +37,72 @@ public class GUIIntegration extends JPanel implements KeyListener {
                     GUIIntegration.this.smp.setVisible(true);
                     GUIIntegration.this.myf.remove(GUIIntegration.this);
                 }else if(result == JOptionPane.YES_OPTION){
-                    String name = JOptionPane.showInputDialog("Please input a file name", null);
-                    try {
-                        FileWriter writer = new FileWriter(name+".txt");
-                        BufferedWriter bw = new BufferedWriter(writer);
-                        for(int i = 0; i < GUIIntegration.this.size; i++){
-                            String curr = "";
-                            for(int j = 0; j < GUIIntegration.this.size; j++){
-                                curr = curr + GUIIntegration.this.gp.gameboard[i][j] + " ";
-                            }
-                            bw.write(curr);
+                    File folder = new File("record/");
+                    File[] listFiles = folder.listFiles();
+                    ArrayList<String> filenames = new ArrayList<>();
+                    for(int i = 0; i < listFiles.length; i++){
+                        if(listFiles[i].isFile()){
+                            filenames.add(listFiles[i].getName());
                         }
-                        bw.flush();
-                        bw.close();
-                        GUIIntegration.this.smp.setVisible(true);
-                        GUIIntegration.this.invalidate();
-                        GUIIntegration.this.myf.remove(GUIIntegration.this);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
                     }
-
+                    if(isNewGame) {
+                        String name = JOptionPane.showInputDialog("Please input a file name", null);
+                        if(name == null){
+                            GUIIntegration.this.smp.setVisible(true);
+                            GUIIntegration.this.myf.remove(GUIIntegration.this);
+                            return;
+                        }
+                        while (filenames.contains(name + ".txt")) {
+                            if(name == null){
+                                GUIIntegration.this.smp.setVisible(true);
+                                GUIIntegration.this.myf.remove(GUIIntegration.this);
+                                return;
+                            }
+                            System.out.println("Filename already exists, enter another one.");
+                            name = JOptionPane.showInputDialog("Please input a file name", null);
+                        }
+                        try {
+                            FileWriter writer = new FileWriter("record/" + name + ".txt");
+                            BufferedWriter bw = new BufferedWriter(writer);
+                            for (int i = 0; i < GUIIntegration.this.size; i++) {
+                                String curr = "";
+                                for (int j = 0; j < GUIIntegration.this.size; j++) {
+                                    curr = curr + GUIIntegration.this.gp.gameboard[i][j] + " ";
+                                }
+                                bw.write(curr);
+                            }
+                            bw.write(System.getProperty("line.separator"));
+                            bw.write(new Date().toString());
+                            bw.flush();
+                            bw.close();
+                            GUIIntegration.this.smp.setVisible(true);
+                            GUIIntegration.this.invalidate();
+                            GUIIntegration.this.myf.remove(GUIIntegration.this);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }else{
+                        try {
+                            FileWriter writer = new FileWriter("record/" + filename + ".txt");
+                            BufferedWriter bw = new BufferedWriter(writer);
+                            for (int i = 0; i < GUIIntegration.this.size; i++) {
+                                String curr = "";
+                                for (int j = 0; j < GUIIntegration.this.size; j++) {
+                                    curr = curr + GUIIntegration.this.gp.gameboard[i][j] + " ";
+                                }
+                                bw.write(curr);
+                            }
+                            bw.write(System.getProperty("line.separator"));
+                            bw.write(new Date().toString());
+                            bw.flush();
+                            bw.close();
+                            GUIIntegration.this.smp.setVisible(true);
+                            GUIIntegration.this.invalidate();
+                            GUIIntegration.this.myf.remove(GUIIntegration.this);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
                 }
 
             }
@@ -98,6 +145,8 @@ public class GUIIntegration extends JPanel implements KeyListener {
     @Override
     public void paint(Graphics g) {
             super.paint(g);
+            g.setColor(new Color(0xbbada0));
+            g.fillRoundRect((int)(xoffset - 10), (int) (yoffset - 10), (int) (size*blockDistance  + 10), (int) (size*blockDistance + 10), 15, 15);
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if (gp.gameboard[i][j] != 0) {
@@ -116,7 +165,7 @@ public class GUIIntegration extends JPanel implements KeyListener {
             }
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("Score: " + getScore(), 800, 50);
+            g.drawString("Score: " + getScore(), 825, 40);
             g.dispose();
     }
     @Override
@@ -158,7 +207,6 @@ public class GUIIntegration extends JPanel implements KeyListener {
             String filename = "score.txt";
             try {
                 File fi = new File(filename);
-                System.out.println(fi.exists());
                 PrintWriter f = new PrintWriter(new FileOutputStream(filename, true));
                 f.write(newLine + name + "/ " + score + "/ " + size + "/ "+ new Date());
                 f.flush();
