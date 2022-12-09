@@ -76,7 +76,7 @@ public class ScoreBoardPanel extends JPanel {
 
                        ScoreBoardPanel.this.remove(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.jsp = new JScrollPane(ScoreBoardPanel.this.jt);
-                       jsp.setBounds(200,50,614,505);
+                       jsp.setBounds(100,75,814,505);
 
                        ScoreBoardPanel.this.add(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.setSize(1000,600);
@@ -90,7 +90,7 @@ public class ScoreBoardPanel extends JPanel {
 
                        ScoreBoardPanel.this.remove(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.jsp = new JScrollPane(ScoreBoardPanel.this.jt);
-                       jsp.setBounds(200,50,614,505);
+                       jsp.setBounds(100,75,814,505);
 
                        ScoreBoardPanel.this.add(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.setSize(1000,600);
@@ -103,7 +103,7 @@ public class ScoreBoardPanel extends JPanel {
 
                        ScoreBoardPanel.this.remove(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.jsp = new JScrollPane(ScoreBoardPanel.this.jt);
-                       jsp.setBounds(200,50,614,505);
+                       jsp.setBounds(100,75,814,505);
 
                        ScoreBoardPanel.this.add(ScoreBoardPanel.this.jsp);
                        ScoreBoardPanel.this.setSize(1000,600);
@@ -124,7 +124,7 @@ public class ScoreBoardPanel extends JPanel {
        this.jt = jt;
        jt.setBounds(30, 40, 400, 300);
        JScrollPane jsp = new JScrollPane(jt);
-       jsp.setBounds(200,50,614,505);
+       jsp.setBounds(100,75,814,505);
        this.jsp = jsp;
 
        this.add(jsp);
@@ -134,9 +134,11 @@ public class ScoreBoardPanel extends JPanel {
        this.setSize(1000, 600);
        this.setVisible(true);
     }
-//    @Override
-//    public void paint(Graphics g) {
-//        super.paint(g);
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        g.drawString("Sort by:", 835, 30);
 //        try {
 //
 //            FileReader rd = new FileReader("score.txt");
@@ -152,6 +154,6 @@ public class ScoreBoardPanel extends JPanel {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-//
-//    }
+
+    }
 }
